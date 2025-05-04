@@ -1,0 +1,12 @@
+###
+POST localhost:8087/matb/inquire
+Content-Type: application/x-www-form-urlencoded
+
+question=Can you tell me anything about Customer1?
+
+###
+
+POST localhost:8087/matb/inquire
+Content-Type: application/x-www-form-urlencoded
+
+question=Can you turn this match into a SQL statement into a table called PROPOSED_CONTRA with the id, the name, and address of the match

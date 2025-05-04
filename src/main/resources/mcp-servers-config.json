@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "puppeteer": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "--init", "-e", "DOCKER_CONTAINER=true", "mcp/puppeteer"]
+    },
+    "filesystem": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--mount", "type=bind,src=/Users/username/Desktop,dst=/projects/Desktop",
+        "--mount", "type=bind,src=/Users/username/Documents,dst=/projects/Documents,ro",
+        "--mount", "type=bind,src=/Users/username/workspaces,dst=/projects/workspaces,ro",
+        "--mount", "type=bind,src=/Users/username/pictures,dst=/projects/pictures,ro",
+        "mcp/filesystem",
+        "/projects"
+      ]
+    },
+    "brave-search": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "BRAVE_API_KEY",
+        "mcp/brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "heloo"
+      }
+    },
+    "xero": {
+      "command": "npx",
+      "args": ["-y", "@xeroapi/xero-mcp-server@latest"],
+      "env": {
+        "XERO_CLIENT_ID": "ello",
+        "XERO_CLIENT_SECRET": "oioi"
+      }
+    },
+    "postgres": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/postgres",
+        "postgresql://myuser:secret@host.docker.internal:5342/mydatabase"]
+    }
+  }
+}

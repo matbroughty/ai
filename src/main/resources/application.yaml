@@ -1,0 +1,36 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: ai-bedrock-llm
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sbdocs
+    username: admin
+    password: password
+  docker:
+    compose:
+      lifecycle-management: start_only
+  main:
+    banner-mode:  console
+  ai:
+    mcp:
+      client:
+        toolcallback:
+          enabled: true
+        stdio:
+          servers-configuration: classpath:/mcp-servers-config.json
+    model:
+      embedding: bedrock-cohere
+    bedrock:
+      converse:
+        chat:
+          enabled: true
+          options:
+            model: amazon.nova-lite-v1:0
+    vectorstore:
+      pgvector:
+        dimensions: 1024
+        initialize-schema: true

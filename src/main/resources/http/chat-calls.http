@@ -2,7 +2,7 @@
 POST localhost:8087/matb/inquire
 Content-Type: application/x-www-form-urlencoded
 
-question=Can you tell me anything about Customer1?
+question=List all OA Clients with a reference of less than 10 - note that most references are in the format of 7 digits NNNNNNN
 
 ###
 

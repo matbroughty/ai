@@ -1,5 +1,11 @@
 server:
   port: 8087
+oa-api:
+  api:
+    user: oa
+    password: ${OA_API_PWD}
+  base:
+    url: https://oa-test.eks.hpdtest.com/api/
 spring:
   application:
     name: ai-bedrock-llm
@@ -16,12 +22,14 @@ spring:
   main:
     banner-mode:  console
   ai:
-    mcp:
-      client:
-        toolcallback:
-          enabled: true
-        stdio:
-          servers-configuration: classpath:/mcp-servers-config.json
+
+#  will look for mcp servers
+#    mcp:
+#      client:
+#        toolcallback:
+#          enabled: false
+#        stdio:
+#          servers-configuration: classpath:/mcp-servers-config.json
     model:
       embedding: bedrock-cohere
     bedrock:
@@ -30,7 +38,13 @@ spring:
           enabled: true
           options:
             model: amazon.nova-lite-v1:0
+#  set keys or use env variables or the aws config file
+#      aws:
+#        access-key: ${AWS_ACCESS_KEY_ID}
+#        secret-key: ${AWS_SECRET_ACCESS_KEY}
+#        region: ${AWS_DEFAULT_REGION}
     vectorstore:
       pgvector:
         dimensions: 1024
         initialize-schema: true
+        remove-existing-vector-store-table: true
